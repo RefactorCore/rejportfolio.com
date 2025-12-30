@@ -258,10 +258,19 @@ function initPortfolioModal() {
     const dataImage = (card.dataset.image || '').trim();
     const tools = card.dataset.tools || '';
     const desc = card.dataset.desc || 'No description available. ';
+    const url = card.dataset.url || '';
 
     // Set text content
     modalTitle.textContent = title;
     modalDesc.textContent = desc;
+
+    const modalLink = document.getElementById('modal-link');
+    if (url && modalLink) {
+      modalLink.href = url;
+      modalLink.style.display = 'inline-flex';
+    } else if (modalLink) {
+      modalLink.style.display = 'none';
+    }
 
     // Clear and populate tools
     modalTools.innerHTML = '';
@@ -337,10 +346,17 @@ function initPortfolioModal() {
     // Clear content
     modalTitle.textContent = '';
     modalDesc.textContent = '';
-    modalTools.innerHTML = '';
-    modalImage.src = '';
-    modalImage.alt = '';
+    modalTools. innerHTML = '';
+    modalImage. src = '';
+    modalImage. alt = '';
     modalImage.style.display = '';
+    
+    // ADD THIS: Hide link
+    const modalLink = document.getElementById('modal-link');
+    if (modalLink) {
+      modalLink.style.display = 'none';
+      modalLink.href = '#';
+    }
 
     // Restore focus
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
